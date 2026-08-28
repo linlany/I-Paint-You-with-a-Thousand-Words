@@ -1,0 +1,7 @@
+interface:
+  display_name: "Literary Image Collage"
+  short_description: "Compose verified public-domain text around an image"
+  default_prompt: "Use $literary-image-collage to build a quote-only literary portrait from this image and the requested public-domain author."
+
+policy:
+  allow_implicit_invocation: true

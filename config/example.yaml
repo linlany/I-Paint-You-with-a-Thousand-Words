@@ -1,0 +1,87 @@
+# Copy this file to a private project config and adapt it to the chosen corpus.
+# This file is intentionally provider-neutral; API keys belong in environment variables.
+
+project:
+  name: literary-image-collage
+  mode: strict_quote_only
+  output_language: user_language
+  preserve_source_language: false
+  allow_user_language_translation: true
+  translation_mode: user_language_by_default
+
+image_analysis:
+  model: your-vision-model
+  require_structured_json: true
+  allow_face_recognition: false
+  include_sensitive_attributes: false
+  uncertainty_threshold: 0.65
+
+corpus:
+  author: "Example Public-Domain Author"
+  author_id: example-author
+  jurisdiction: worldwide-review-required
+  sources:
+    - id: example-corpus
+      path: examples/fixture-corpus.jsonl
+      format: jsonl
+      license_status: public_domain_or_fixture
+      source_priority: 1.0
+  require_public_domain_or_user_license: true
+  allow_unverified_rights: false
+  allow_translation_as_primary_quote: true
+
+retrieval:
+  facets:
+    - observations
+    - associations
+    - composition
+    - lighting
+    - visual_anchors
+  top_k_per_facet: 12
+  max_candidates: 80
+  # source_id may identify the whole corpus or a source page; dedupe exact
+  # records instead so different works from one collection remain eligible.
+  dedupe_by: record_id
+  min_source_quality: 0.70
+  use_hybrid_retrieval: true
+  lexical_weight: 0.45
+  semantic_weight: 0.55
+
+rerank:
+  weights:
+    semantic_fit: 0.20
+    visual_coverage: 0.15
+    scene_fit: 0.25
+    source_quality: 0.15
+    quote_completeness: 0.10
+    diversity: 0.15
+    contradiction_risk: -0.20
+  max_quotes: 12
+  max_quote_chars: 280
+  require_distinct_works: false
+
+diversity:
+  # Soft preference: later passages from the same work are down-ranked,
+  # but remain eligible when they are materially better or evidence is scarce.
+  same_work_penalty: 0.45
+  same_record_penalty: 0.15
+  floor: 0.20
+
+scene_matching:
+  require_anchor_match: true
+  min_scene_fit: 0.15
+  hard_conflict_threshold: 0.80
+
+verification:
+  exact_match_required: true
+  normalize_whitespace_for_warning_only: true
+  verify_source_url: true
+  require_location: true
+  require_snapshot_hash: false
+  fail_on_unverified_quote: true
+
+provenance:
+  include_retrieved_at: true
+  include_query_facets: true
+  include_rejected_candidates: true
+  hash_algorithm: sha256

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/literary-image-collage/collage-output.schema.json",
+  "title": "CollageOutput",
+  "type": "object",
+  "required": ["mode", "author", "image_summary", "sections", "provenance", "limitations"],
+  "properties": {
+    "mode": {"type": "string", "enum": ["strict_quote_only", "quote_with_labeled_connectors"]},
+    "author": {"type": "string", "minLength": 1},
+    "display_language": {"type": "string"},
+    "source_language": {"type": "string"},
+    "image_summary": {"type": "object"},
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["section_id", "quote_ids", "text"],
+        "properties": {
+          "section_id": {"type": "string"},
+          "heading": {"type": "string"},
+          "quote_ids": {"type": "array", "items": {"type": "string"}},
+          "text": {"type": "string", "minLength": 1},
+          "connector_text": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["quote_id", "exact_text", "source_id", "source_url", "location", "verification_status"],
+        "properties": {
+          "quote_id": {"type": "string"},
+          "exact_text": {"type": "string", "minLength": 1},
+          "source_id": {"type": "string"},
+          "source_url": {"type": "string"},
+          "location": {"type": "string"},
+          "translated_text": {"type": "string"},
+          "translation_type": {"type": "string", "enum": ["none", "model_translation", "licensed_translation", "public_domain_translation", "editorial_translation"]},
+          "translation_status": {"type": "string", "enum": ["not_translated", "translated_from_verified_source", "translation_unverified"]},
+          "retrieved_at": {"type": "string"},
+          "snapshot_hash": {"type": "string"},
+          "verification_status": {"type": "string", "enum": ["verified_exact", "verified_normalized_warning", "unverified", "rejected"]},
+          "verification_notes": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "rejected_candidates": {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

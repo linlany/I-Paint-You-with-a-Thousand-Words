@@ -1,0 +1,28 @@
+{
+  "image_id": "demo-night-window",
+  "observations": [
+    {"text": "one person seated", "category": "subject", "confidence": 0.96, "evidence": "A single seated figure is visible in the frame."},
+    {"text": "window", "category": "object", "confidence": 0.98, "evidence": "A large glass window is visible beside the figure."},
+    {"text": "rain on glass", "category": "texture", "confidence": 0.90, "evidence": "Droplets and streaks are visible on the window."},
+    {"text": "night", "category": "lighting", "confidence": 0.82, "evidence": "The exterior is dark and the interior is dimly lit."},
+    {"text": "pale reflected light", "category": "lighting", "confidence": 0.78, "evidence": "A cool pale reflection falls across the interior."}
+  ],
+  "associations": [
+    {"text": "waiting", "kind": "temporal", "confidence": 0.61, "derived_from": ["one person seated", "window"]},
+    {"text": "solitude", "kind": "atmosphere", "confidence": 0.58, "derived_from": ["one person seated", "close framing"]},
+    {"text": "transit", "kind": "theme", "confidence": 0.42, "derived_from": ["window", "waiting"]}
+  ],
+  "visual_anchors": [
+    {"text": "one person seated", "category": "subject", "confidence": 0.96, "evidence": "A single seated figure is visible in the frame."},
+    {"text": "window", "category": "object", "confidence": 0.98, "evidence": "A large glass window is visible beside the figure."},
+    {"text": "night", "category": "lighting", "confidence": 0.82, "evidence": "The exterior is dark and the interior is dimly lit."},
+    {"text": "pale reflected light", "category": "lighting", "confidence": 0.78, "evidence": "A cool pale reflection falls across the interior."}
+  ],
+  "scene_conflicts": [
+    {"text": "outdoor daylight", "confidence": 0.86, "severity": "hard", "reason": "The image is an enclosed night scene."},
+    {"text": "bright midday sun", "confidence": 0.80, "severity": "soft", "reason": "The image has dim, cool lighting rather than strong midday light."}
+  ],
+  "composition": ["subject beside window", "close framing", "dark exterior beyond glass"],
+  "uncertainties": ["The vehicle or room type is not certain from the image alone."],
+  "safety_notes": ["No identity or sensitive-attribute inference made."]
+}

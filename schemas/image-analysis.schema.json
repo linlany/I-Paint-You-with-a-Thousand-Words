@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/literary-image-collage/image-analysis.schema.json",
+  "title": "ImageAnalysis",
+  "type": "object",
+  "required": ["observations", "associations", "uncertainties"],
+  "properties": {
+    "image_id": {"type": "string"},
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "confidence"],
+        "properties": {
+          "text": {"type": "string", "minLength": 1},
+          "category": {"type": "string", "enum": ["subject", "action", "object", "setting", "lighting", "color", "composition", "texture", "text_visible"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "evidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "associations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["text", "confidence"],
+        "properties": {
+          "text": {"type": "string", "minLength": 1},
+          "kind": {"type": "string", "enum": ["atmosphere", "theme", "metaphor", "temporal", "social", "spatial"]},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "derived_from": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "visual_anchors": {
+      "type": "array",
+      "description": "Dominant, concrete visual cues that should drive scene matching.",
+      "items": {
+        "type": "object",
+        "required": ["text", "confidence"],
+        "properties": {
+          "text": {"type": "string", "minLength": 1},
+          "category": {"type": "string"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "evidence": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "scene_conflicts": {
+      "type": "array",
+      "description": "Concrete cues that conflict with a candidate passage; use hard only for genuine incompatibilities.",
+      "items": {
+        "type": "object",
+        "required": ["text", "confidence", "severity"],
+        "properties": {
+          "text": {"type": "string", "minLength": 1},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "severity": {"type": "string", "enum": ["soft", "hard"]},
+          "reason": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "composition": {"type": "array", "items": {"type": "string"}},
+    "uncertainties": {"type": "array", "items": {"type": "string"}},
+    "safety_notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

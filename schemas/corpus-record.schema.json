@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/literary-image-collage/corpus-record.schema.json",
+  "title": "CorpusRecord",
+  "type": "object",
+  "required": ["text", "author", "work", "source_id", "source_url", "location", "license_status"],
+  "properties": {
+    "text": {"type": "string", "minLength": 1},
+    "record_id": {"type": "string"},
+    "author": {"type": "string", "minLength": 1},
+    "author_id": {"type": "string"},
+    "work": {"type": "string", "minLength": 1},
+    "work_id": {"type": "string"},
+    "document_id": {"type": "string"},
+    "article_id": {"type": "string"},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_url": {"type": "string", "format": "uri"},
+    "location": {"type": "string", "minLength": 1},
+    "language": {"type": "string"},
+    "license_status": {"type": "string", "enum": ["public_domain", "user_provided_licensed", "public_domain_or_fixture", "rights_review", "restricted"]},
+    "snapshot_hash": {"type": "string"},
+    "retrieved_at": {"type": "string"},
+    "char_start": {"type": "integer", "minimum": 0},
+    "char_end": {"type": "integer", "minimum": 0},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "embedding": {"type": "array", "items": {"type": "number"}}
+  },
+  "additionalProperties": true
+}

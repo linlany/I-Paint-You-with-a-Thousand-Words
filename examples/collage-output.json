@@ -1,0 +1,24 @@
+{
+  "mode": "strict_quote_only",
+  "author": "Test Corpus Author",
+  "image_summary": {
+    "observations": ["one person seated", "window", "rain on glass", "night"],
+    "associations": ["waiting", "solitude"],
+    "disclaimer": "A retrieval-based juxtaposition; the source author did not write about this image."
+  },
+  "sections": [
+    {"section_id":"s-01","heading":"The window","quote_ids":["q-001"],"text":"At the window, the night gathered quietly."},
+    {"section_id":"s-02","heading":"The figure","quote_ids":["q-002"],"text":"A solitary traveler waited beside the glass."},
+    {"section_id":"s-03","heading":"The light","quote_ids":["q-003"],"text":"Pale reflected light rested on the floor."}
+  ],
+  "provenance": [
+    {"quote_id":"q-001","exact_text":"At the window, the night gathered quietly.","source_id":"fixture-corpus","source_url":"https://example.invalid/literary-image-collage/fixture-corpus","location":"Fixture Work A, line 1","retrieved_at":"2026-08-28T00:00:00Z","snapshot_hash":"sha256:fixture-a","verification_status":"verified_exact","verification_notes":[]},
+    {"quote_id":"q-002","exact_text":"A solitary traveler waited beside the glass.","source_id":"fixture-corpus","source_url":"https://example.invalid/literary-image-collage/fixture-corpus","location":"Fixture Work A, line 2","retrieved_at":"2026-08-28T00:00:00Z","snapshot_hash":"sha256:fixture-b","verification_status":"verified_exact","verification_notes":[]},
+    {"quote_id":"q-003","exact_text":"Pale reflected light rested on the floor.","source_id":"fixture-corpus","source_url":"https://example.invalid/literary-image-collage/fixture-corpus","location":"Fixture Work B, line 1","retrieved_at":"2026-08-28T00:00:00Z","snapshot_hash":"sha256:fixture-c","verification_status":"verified_exact","verification_notes":[]}
+  ],
+  "limitations": [
+    "The image analysis distinguishes visible observations from interpretive associations.",
+    "The corpus is a synthetic fixture for offline testing, not a claim about a real author."
+  ],
+  "rejected_candidates": []
+}
